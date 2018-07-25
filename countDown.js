@@ -14,10 +14,13 @@
         var defaultOpts = {
             startTime:'',
             endTime:'',
-            cell:'',
+            startTip:'开始',
+            endTip:'结束',
             moveCallback:null,
             endCallback:null,
         };
+        
+        
         this.currentOpts = $.extend(defaultOpts,opts);
         this.diff = 0;
         this.timer = null;
@@ -79,19 +82,28 @@
                     var mins = me.checkTime(me.convientTool(me.diff,'M'));
                     var miaos = me.checkTime(me.convientTool(me.diff,'S'));
                     var haomiaos = me.checkTime(me.convientTool(me.diff,'MS'))
-
-                    me.currentOpts.moveCallback&&me.currentOpts.moveCallback(days,hours,mins,miaos);
+                    var str = me.currentOpts.startTip+''+days+'天'+hours+':'+mins+":"+miaos;
+                    me.currentOpts.moveCallback&&me.currentOpts.moveCallback(str);
                                    
                 }else{
                     clearInterval(me.timer);
-                    me.currentOpts.endCallback&&me.currentOpts.endCallback()
+                    me.currentOpts.endCallback&&me.currentOpts.endCallback(me.currentOpts.endTip)
                 };
                 me.diff = me.diff - 1000;
             },1000)
         }
     }
-    function countDown(opts){
-        return new CountDown(opts);
+    function countDown(){
+        console.log(arguments);
+        var params = {
+            startTime:arguments[0],
+            endTime:arguments[1],
+            startTip:arguments[4],
+            endTip:arguments[5],
+            moveCallback:arguments[2],
+            endCallback:arguments[3], 
+        }
+        return new CountDown(params);
     }
     window.countDown = countDown;
 })(window,$)

@@ -12,15 +12,12 @@
     
 </body>
 <script>
-function endCallback(){
-    console.log('game over');
-}
-function moveCallback(days,hours,mins,miaos){
-    console.log(days,hours,mins,miaos);
-};
-countDown({endTime:"2018-07-28 11:15:00",startTime:"2018-07-28 11:12:31",moveCallback,endCallback});
 
-countDown({endTime:"2018-07-28 11:13:00",startTime:"2018-07-28 11:12:31",moveCallback,endCallback});
+
+countDown("2018-07-28 11:12:00","2018-07-28 11:15:31",function(str){console.log(str)},function(str){console.log(str)},'距离结束还剩','团购已结束');
+countDown("2018-07-28 11:13:00","2018-07-28 11:15:31",function(str){console.log(str)},function(str){console.log(str)},'结束还剩','团购已结束');
+
+
 // countDown({endTime:"2018-07-28 11:14:00",startTime:"2018-07-28 11:12:31"})
 
 </script>
